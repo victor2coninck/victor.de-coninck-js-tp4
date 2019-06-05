@@ -1,7 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import FavouriteToggle from './FavouriteToggle';
 
-const Post = ({ data }) => (
+const Post = ({ data }) => {
+  const [content, setContent] = useState(data.title);
+
+  const handleClick = () => {
+    if (content === data.title)
+      setContent(data.body);
+    else
+      setContent(data.title);
+  }
+
+  return (
   <li
     style={{
       backgroundColor: 'white',
@@ -12,10 +22,11 @@ const Post = ({ data }) => (
       cursor: 'pointer'
     }}
   >
-    <span style={{ fontWeight: '900' }}>{data.title}</span>
+    <span onClick={handleClick} style={{ fontWeight: '900' }}>{content}</span>
 
     <FavouriteToggle style={{ float: 'right' }} />
   </li>
-);
+  );
+}
 
 export default Post;
