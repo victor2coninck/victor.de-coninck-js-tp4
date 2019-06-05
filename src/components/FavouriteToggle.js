@@ -1,7 +1,19 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
-const FavouriteToggle = ({ isActive = false, style = {} }) => (
-  <span style={style}>{isActive ? '♥️' : '♡'}</span>
-);
+const FavouriteToggle = ({ style = {} }) => {
+  const [isActive, setActive] = useState(false);
+
+  /*
+  useEffect( () => {
+    setActive(`${isActive}`)
+    }
+  );*/
+
+  const handleClick = () => {
+    setActive(!isActive);
+  }
+
+  return (<span style={style} onClick={handleClick}>{isActive ? '♥️' : '♡'}</span>)
+};
 
 export default FavouriteToggle;
